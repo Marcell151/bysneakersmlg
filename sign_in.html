@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="https://i.pinimg.com/564x/91/33/b2/9133b2e1d4ea8419759371980ff48fad.jpg" type="image/gif" sizes="16x16">
+<title>BySneakers.mlg</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+button a {
+    text-decoration: none;
+  }
+</style>
+</head>
+<body class="w3-white w3-content" style="max-width:none">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px; border-right: 1px solid black" id="mySidebar"><br>
+  <div class="w3-container">
+    <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-black" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="https://i.postimg.cc/RZr5bqzL/9133b2e1d4ea8419759371980ff48fad.jpg" style="width:50%;" class="w3-round"><br><br>
+    <h4><b class="w3-text-orange">BySneakers.mlg</b></h4>
+  </div>
+  <div class="w3-bar-block">
+    <a href="home.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right"></i>HOME</a> 
+    <a href="about.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right"></i>ABOUT</a> 
+    <a href="product.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right"></i>PRODUCT</a>
+    <a href="profile.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right"></i>PROFILE</a>
+    <a href="transaction.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right"></i>TRANSACTION</a>
+    <a href="sign_in.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-light-gray w3-text-black"><i class="fa-fw w3-margin-right"></i><strong>SIGN IN</strong></a>
+    <a href="sign_up.html" onclick= "w3_close()" class="w3-bar-item w3-button w3-black w3-padding"><i class="fa-fw w3-margin-right"></i>SIGN UP</a>
+  </div>
+  </div>
+  </div>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px">
+
+<!-- Profile -->
+<a href="#"><img src="/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-container">
+        <h1><b>Sign In</b></h1>
+        <div class="w3-section w3-bottombar w3-padding-16"> 
+        </div>
+    </div>
+
+    <!---Isi -->
+    <div class="w3-container w3-padding-large">
+        <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-third">
+        </div>  
+            </div>
+    <div class="w3-padding">
+    <hr class="w3-opacity">
+    <form action="/action_page.php" target="_blank">
+    <div class="w3-section w3-">
+        <label><strong>Email</strong></label>
+        <input class="w3-input w3-border" type="text" name="Email" value="userid123@gmail.com" required>
+    </div>
+    <div class="w3-section">
+        <label><strong>Password</strong></label>
+        <input class="w3-input w3-border" type="password" name="Password" value="userid123" required>
+    </div>
+    <div class="w3-card-4 w3-light-grey">
+      <div id="captchaText" class="w3-container w3-padding"></div>
+      <input type="text" id="userInput" class="w3-input w3-border w3-margin-bottom" placeholder="Enter Captcha">
+    </div>
+    <button id="captcha" class="w3-button w3-black w3-margin-bottom" disabled><a href="home.html"><i class="w3-margin-mid"></i>Sign In</a></button>
+    <a href="sign_up.html" type="Sign Up" class="w3-button w3-black w3-margin-bottom"><i class="w3-margin-mid"></i>Sign Up</a>
+    </form>
+  </div>
+
+  <!-- script -->
+  <script>
+    // Generate Random Number
+    function generateCaptcha() {
+      return Math.floor(Math.random() * 10000);
+    }
+    
+    // Initialize Captcha
+    function init() {
+      var captchaText = generateCaptcha();
+      document.getElementById('captchaText').innerText = captchaText;
+    }
+    
+    // Validate User Input
+    function validateCaptcha() {
+      var userInput = document.getElementById('userInput').value;
+      var captchaText = document.getElementById('captchaText').innerText;
+      document.getElementById('captcha').disabled = userInput !== captchaText;
+    }
+    
+    // Initialize Captcha Saat Halaman Dimuat
+    window.onload = function() {
+      init();
+    };
+    // Panggil ValidateCaptcha() Saat Input Captcha berubah
+    document.getElementById('userInput').addEventListener('input', validateCaptcha);
+    </script>
+    
+  <!-- Footer -->
+  <div class="w3-blue-gray w3-center w3-padding-16">Made by <a title="Carlo, Ruben, Adib, Marcell, William" target="_blank" class="w3-hover-opacity">Carlo, Ruben, Adib, Marcell, William</a></div>
+  
+  <!-- End page content -->
+  </div>
+  
+  <script>
+  // Script to open and close sidebar
+  function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+  }
+   
+  function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+  }
+  </script>
+  
+  </body>
+  </html>
